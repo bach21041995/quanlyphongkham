@@ -80,6 +80,8 @@ namespace quanlyphongkham.DTO
             set { id_ptl = value; }
         }
 
+        
+
         public KHO_CHI_TIET(string kho, int ngvu, string vattu, DateTime thoidiem, 
             string id_nk, float solg, float gia, string tt_id, string id_ptl)
         {

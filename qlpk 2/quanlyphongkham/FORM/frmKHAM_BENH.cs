@@ -543,8 +543,9 @@ namespace quanlyphongkham.FORM
             int slxuat = int.Parse(txtSLPK.Text);
             float gia = float.Parse(txtDonGiaPK.Text);
             string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
+            string idptl = "";
 
-            KHO_CHI_TIET t = new KHO_CHI_TIET(idkho, nvid, idvt, dt, idnkct, slxuat, gia, idtt);
+            KHO_CHI_TIET t = new KHO_CHI_TIET(idkho, nvid, idvt, dt, idnkct, slxuat, gia, idtt, idptl);
             return t;
         }
 

@@ -238,5 +238,48 @@ namespace quanlyphongkham.DAO
 
             return result;
         }
+
+        public bool Update_CTPN_SOLG(string id_nhapkho, int solg)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(db.connectionStr);
+                SqlCommand cmd = new SqlCommand("update_CT_PHIEUNHAP_SOLUONG", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ID_NHAPKHOCHITIET", SqlDbType.VarChar, 30);
+                cmd.Parameters.Add("@CTPN_SOLUONG", SqlDbType.Int);
+
+                cmd.Parameters["@ID_NHAPKHOCHITIET"].Value = id_nhapkho;
+                cmd.Parameters["@CTPN_SOLUONG"].Value = solg;
+
+                con.Open();
+
+                int result = cmd.ExecuteNonQuery();
+                con.Close();
+                return result > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public int get_SoLgTon(string id)
+        {
+            SqlConnection con = new SqlConnection(db.connectionStr);
+            SqlCommand cmd = new SqlCommand("get_SoLgTon", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@id_pnct", SqlDbType.VarChar, 30);
+            cmd.Parameters.Add("@solgton", SqlDbType.Int);
+            cmd.Parameters["@solgton"].Direction = ParameterDirection.Output;
+            cmd.Parameters["@id_pnct"].Value = id;
+            cmd.Parameters["@solgton"].Value = "";
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            int result = int.Parse(cmd.Parameters["@solgton"].Value.ToString());
+            con.Close();
+            return result;
+        }
     }
 }
